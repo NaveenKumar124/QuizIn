@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setTitle("QuizIn");
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar.setTitle("QuizIn");
   //      setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("QuizIn");
+//        getSupportActionBar().setTitle("QuizIn");
 
         recycler_category = (RecyclerView) findViewById(R.id.recycler_category);
         recycler_category.setHasFixedSize(true);
