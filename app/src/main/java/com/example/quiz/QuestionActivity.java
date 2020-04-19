@@ -204,7 +204,7 @@ public class QuestionActivity extends AppCompatActivity
                     .append("/")
                     .append(String.format("%d",Common.questionList.size())).toString());
 
-                    txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
+                    //txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
 
                     if (question_state.getType() == Common.ANSWER_TYPE.NO_ANSWER)
                     {
@@ -244,7 +244,7 @@ public class QuestionActivity extends AppCompatActivity
                 .append("/")
                 .append(String.format("%d",Common.questionList.size())).toString());
 
-        txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
+        //txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
 
         if (question_state.getType() == Common.ANSWER_TYPE.NO_ANSWER)
         {
@@ -373,8 +373,8 @@ public class QuestionActivity extends AppCompatActivity
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.menu_wrong_answer);
         ConstraintLayout constraintLayout = (ConstraintLayout) item.getActionView();
-        txt_wrong_answer = (TextView) constraintLayout.findViewById(R.id.txt_wrong_answer);
-        txt_wrong_answer.setText(String.valueOf(0));
+//        txt_wrong_answer = (TextView) constraintLayout.findViewById(R.id.txt_wrong_answer);
+//        txt_wrong_answer.setText(String.valueOf(0));
 
 
         return true;
