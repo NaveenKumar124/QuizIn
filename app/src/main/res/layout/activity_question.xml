@@ -20,6 +20,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_question"
-        app:menu="@menu/activity_question_drawer" />
+         />
 
 </androidx.drawerlayout.widget.DrawerLayout>
