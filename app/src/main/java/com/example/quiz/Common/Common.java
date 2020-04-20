@@ -21,6 +21,7 @@ public class Common {
     public static final int TOTAL_TIME = 20 * 60 * 1000 ; //20 Minutes
     public static List<Question> questionList = new ArrayList<>();
     public static List<CurrentQuestion> answerSheetList = new ArrayList<>();
+    public static List<CurrentQuestion> answerSheetListFiltered = new ArrayList<>();
     public static Category selectedCategory = new Category();
     public static CountDownTimer countDownTimer;
     public static int right_answer_count = 0;

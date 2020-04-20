@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class ResultActivity extends AppCompatActivity {
     TextView txt_timer, txt_result, txt_right_answer;
     Button btn_filter_total, btn_filter_right, btn_filter_wrong, btn_filter_no_answer;
     RecyclerView recycler_result;
+
+    ResultGridAdapter adapter,filtered_adapter;
 
     BroadcastReceiver backToQuestion = new BroadcastReceiver() {
         @Override
@@ -76,7 +79,7 @@ public class ResultActivity extends AppCompatActivity {
         recycler_result.setLayoutManager(new GridLayoutManager(this,3));
 
         //Set Adapter
-        ResultGridAdapter adapter = new ResultGridAdapter(this,Common.answerSheetList);
+        adapter = new ResultGridAdapter(this,Common.answerSheetList);
         recycler_result.addItemDecoration(new SpaceDecoration(4));
         recycler_result.setAdapter(adapter);
 
@@ -92,5 +95,88 @@ public class ResultActivity extends AppCompatActivity {
         btn_filter_right.setText(new StringBuilder("").append(Common.right_answer_count));
         btn_filter_wrong.setText(new StringBuilder("").append(Common.wrong_answer_count));
         btn_filter_no_answer.setText(new StringBuilder("").append(Common.no_answer_count));
+
+        //Calculate result
+        int percent = (Common.right_answer_count*100/Common.questionList.size());
+        if (percent > 80)
+        {
+            txt_result.setText("EXCELLENT");
+        }
+        else if (percent > 70 && percent < 80)
+        {
+            txt_result.setText("GOOD");
+        }
+        else if (percent > 60 && percent < 70)
+        {
+            txt_result.setText("FAIR");
+        }
+        else if (percent > 50 && percent < 60)
+        {
+            txt_result.setText("POOR");
+        }
+        else if (percent > 40 && percent < 50)
+        {
+            txt_result.setText("BAD");
+        }
+        else
+        {
+            txt_result.setText("FAILING");
+        }
+
+        //Event filter
+        btn_filter_total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (adapter == null)
+                {
+                    adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetList);
+                    recycler_result.setAdapter(adapter);
+                }
+                else
+                    recycler_result.setAdapter(adapter);
+            }
+        });
+
+        btn_filter_no_answer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.answerSheetListFiltered.clear();
+                for (int i=0;i<Common.answerSheetList.size();i++)
+                {
+                    if (Common.answerSheetList.get(i).getType() ==  Common.ANSWER_TYPE.NO_ANSWER)
+                        Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
+                }
+                filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
+                recycler_result.setAdapter(adapter);
+            }
+        });
+
+        btn_filter_wrong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.answerSheetListFiltered.clear();
+                for (int i=0;i<Common.answerSheetList.size();i++)
+                {
+                    if (Common.answerSheetList.get(i).getType() ==  Common.ANSWER_TYPE.WRONG_ANSWER)
+                        Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
+                }
+                filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
+                recycler_result.setAdapter(adapter);
+            }
+        });
+
+        btn_filter_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.answerSheetListFiltered.clear();
+                for (int i=0;i<Common.answerSheetList.size();i++)
+                {
+                    if (Common.answerSheetList.get(i).getType() ==  Common.ANSWER_TYPE.RIGHT_ANSWER)
+                        Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
+                }
+                filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
+                recycler_result.setAdapter(adapter);
+            }
+        });
     }
 }
