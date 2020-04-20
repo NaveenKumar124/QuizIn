@@ -43,8 +43,7 @@ public class QuestionActivity extends AppCompatActivity
      int time_play = Common.TOTAL_TIME;
      boolean isAnswerModeView = false;
 
-
-     TextView txt_right_answer,txt_timer,txt_wrong_answer;
+     TextView txt_right_answer, txt_timer, txt_wrong_answer;
 
      RecyclerView answer_sheet_view;
      AnswerSheetAdapter answerSheetAdapter;
@@ -97,6 +96,8 @@ public class QuestionActivity extends AppCompatActivity
             txt_right_answer.setVisibility(View.VISIBLE);
 
             txt_right_answer.setText(new StringBuilder(String.format("%d/%d", Common.right_answer_count, Common.questionList.size())));
+
+
 
             countTimer();
 
@@ -244,7 +245,7 @@ public class QuestionActivity extends AppCompatActivity
                 .append("/")
                 .append(String.format("%d",Common.questionList.size())).toString());
 
-        //txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
+        txt_wrong_answer.setText(String.valueOf(Common.wrong_answer_count));
 
         if (question_state.getType() == Common.ANSWER_TYPE.NO_ANSWER)
         {
@@ -373,8 +374,8 @@ public class QuestionActivity extends AppCompatActivity
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.menu_wrong_answer);
         ConstraintLayout constraintLayout = (ConstraintLayout) item.getActionView();
-//        txt_wrong_answer = (TextView) constraintLayout.findViewById(R.id.txt_wrong_answer);
-//        txt_wrong_answer.setText(String.valueOf(0));
+//         txt_wrong_answer = (TextView) constraintLayout.findViewById(R.id.txt_wrong_answer);
+//         txt_wrong_answer.setText(String.valueOf(0));
 
 
         return true;
