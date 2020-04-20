@@ -1,5 +1,6 @@
 package com.example.quiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -12,13 +13,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.quiz.Adapter.ResultGridAdapter;
 import com.example.quiz.Common.Common;
 import com.example.quiz.Common.SpaceDecoration;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 
 import java.util.concurrent.TimeUnit;
 
@@ -59,15 +65,15 @@ public class ResultActivity extends AppCompatActivity {
                 .registerReceiver(backToQuestion,new IntentFilter(Common.KEY_BACK_FROM_RESULT));
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("RESULT");
-        setSupportActionBar(toolbar);
+//        toolbar.setTitle("RESULT");
+//        setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         txt_result = (TextView) findViewById(R.id.txt_result);
         txt_right_answer = (TextView) findViewById(R.id.txt_right_answer);
-        txt_timer = (TextView) findViewById(R.id.txt_timer);
+        txt_timer = (TextView) findViewById(R.id.txt_time);
 
         btn_filter_no_answer = (Button) findViewById(R.id.btn_filter_no_answer);
         btn_filter_right = (Button) findViewById(R.id.btn_filter_right_answer);
@@ -147,7 +153,7 @@ public class ResultActivity extends AppCompatActivity {
                         Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
                 }
                 filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
-                recycler_result.setAdapter(adapter);
+                recycler_result.setAdapter(filtered_adapter);
             }
         });
 
@@ -161,7 +167,7 @@ public class ResultActivity extends AppCompatActivity {
                         Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
                 }
                 filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
-                recycler_result.setAdapter(adapter);
+                recycler_result.setAdapter(filtered_adapter);
             }
         });
 
@@ -175,8 +181,74 @@ public class ResultActivity extends AppCompatActivity {
                         Common.answerSheetListFiltered.add(Common.answerSheetList.get(i));
                 }
                 filtered_adapter = new ResultGridAdapter(ResultActivity.this,Common.answerSheetListFiltered);
-                recycler_result.setAdapter(adapter);
+                recycler_result.setAdapter(filtered_adapter);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.result_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.menu_do_quiz_again:
+                doQuizAgain();
+                break;
+
+            case R.id.menu_view_answer:
+                viewQuizAnswer();
+                break;
+
+            case android.R.id.home:
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //Delete all Activity
+                startActivity(intent);
+                break;
+
+        }
+        return true;
+    }
+
+    private void viewQuizAnswer() {
+
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("action","viewquizanswer");
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+
+    }
+
+    private void doQuizAgain() {
+
+        new MaterialStyledDialog.Builder(ResultActivity.this)
+                .setTitle("Do Quiz Again  ?")
+                .setIcon(R.drawable.ic_mood_black_24dp)
+                .setDescription("Do you really want to delete this data ?")
+                .setNegativeText("No")
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveText("Yes")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+
+                       Intent returnIntent = new Intent();
+                       returnIntent.putExtra("action","doitagain");
+                       setResult(Activity.RESULT_OK,returnIntent);
+                       finish();
+
+                    }
+                }).show();
+
     }
 }

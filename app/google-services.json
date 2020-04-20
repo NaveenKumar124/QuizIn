@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "623889047501",
+    "firebase_url": "https://quizin-a6837.firebaseio.com",
+    "project_id": "quizin-a6837",
+    "storage_bucket": "quizin-a6837.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623889047501:android:f59c940af8bd45c9cd2e84",
+        "android_client_info": {
+          "package_name": "com.example.quiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623889047501-8t5f4dvt4ng81brm4trd4o31p4002021.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6gU-rYFplmop6sWp4AqAcH26CnRZ4J4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623889047501-8t5f4dvt4ng81brm4trd4o31p4002021.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
