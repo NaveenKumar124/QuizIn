@@ -1,5 +1,6 @@
 package com.example.quiz.Common;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 
 import com.example.quiz.Model.Category;
@@ -14,6 +15,9 @@ import java.util.TreeSet;
 
 public class Common {
 
+    public static final String  KEY_BACK_FROM_RESULT = "BACK_FROM_RESULT";
+    public static int timer = 0;
+
     public static final int TOTAL_TIME = 20 * 60 * 1000 ; //20 Minutes
     public static List<Question> questionList = new ArrayList<>();
     public static List<CurrentQuestion> answerSheetList = new ArrayList<>();
@@ -21,6 +25,8 @@ public class Common {
     public static CountDownTimer countDownTimer;
     public static int right_answer_count = 0;
     public static int wrong_answer_count = 0;
+    public static int no_answer_count = 0;
+    public static StringBuilder data_question = new StringBuilder();
     public static ArrayList<QuestionFragment> fragmentsList = new ArrayList<>();
     public static TreeSet<String> selected_values = new TreeSet<>();
 

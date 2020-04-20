@@ -1,5 +1,6 @@
 package com.example.quiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -40,7 +42,8 @@ import java.util.concurrent.TimeUnit;
 public class QuestionActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-     int time_play = Common.TOTAL_TIME;
+    private static final int CODE_GET_RESULT = 9999;
+    int time_play = Common.TOTAL_TIME;
      boolean isAnswerModeView = false;
 
      TextView txt_right_answer, txt_timer, txt_wrong_answer;
@@ -254,6 +257,12 @@ public class QuestionActivity extends AppCompatActivity
         }
 
         //We will navigate to new Result Activity here
+        Intent intent = new Intent(QuestionActivity.this,ResultActivity.class);
+        Common.timer = Common.TOTAL_TIME - time_play;
+        Common.no_answer_count = Common.questionList.size() - (Common.wrong_answer_count+Common.right_answer_count);
+        Common.data_question = new StringBuilder(new Gson().toJson(Common.answerSheetList));
+
+        startActivityForResult(intent,CODE_GET_RESULT);
 
     }
 
