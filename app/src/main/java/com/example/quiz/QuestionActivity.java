@@ -224,7 +224,7 @@ public class QuestionActivity extends AppCompatActivity
                 new MaterialStyledDialog.Builder(this)
                         .setTitle("Oops!")
                         .setIcon(R.drawable.ic_sentiment_very_dissatisfied_black_24dp)
-                        .setDescription("We do not have any questons in this" + Common.selectedCategory.getName() + "Category")
+                        .setDescription("We do not have any questons in this" + Common.selectedCategory.getName() + " Category")
                         .setPositiveText("OK")
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override

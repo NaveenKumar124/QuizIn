@@ -39,7 +39,7 @@ public class AnswerSheetHelperAdapter extends RecyclerView.Adapter<AnswerSheetHe
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
-        myViewHolder.txt_question_num.setText(String.valueOf(i+1)); // Show question number
+        myViewHolder.txt_question_num.setText(String.valueOf(i + 1 )); // Show question number
         if(currentQuestionList.get(i).getType() == Common.ANSWER_TYPE.RIGHT_ANSWER)
             myViewHolder.layout_wrapper.setBackgroundResource(R.drawable.grid_question_right_answer);
         else if(currentQuestionList.get(i).getType() == Common.ANSWER_TYPE.WRONG_ANSWER)

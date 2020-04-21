@@ -29,7 +29,7 @@ public class OnlineDBHelper {
     public OnlineDBHelper(Context context,FirebaseDatabase firebaseDatabase) {
         this.context = context;
         this.firebaseDatabase = firebaseDatabase;
-        reference = this.firebaseDatabase.getReference("QuizIn");
+        reference = this.firebaseDatabase.getReference("quizin");
     }
 
     private static OnlineDBHelper instance;
