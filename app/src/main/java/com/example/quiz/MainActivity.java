@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         //Get value Online Mode
         Common.isOnlineMode = Paper.book().read(Common.KEY_SAVE_ONLINE_MODE,false); //Default false
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
-        toolbar.setTitle("QuizIn");
+//        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+//        toolbar.setTitle("QuizIn");
 //              setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("QuizIn");
+      //  getSupportActionBar().setTitle("QuizIn");
 
         recycler_category = (RecyclerView) findViewById(R.id.recycler_category);
         recycler_category.setHasFixedSize(true);

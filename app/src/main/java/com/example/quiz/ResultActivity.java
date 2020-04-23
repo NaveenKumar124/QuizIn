@@ -200,9 +200,9 @@ public class ResultActivity extends AppCompatActivity {
                 doQuizAgain();
                 break;
 
-            case R.id.menu_view_answer:
-                viewQuizAnswer();
-                break;
+//            case R.id.menu_view_answer:
+//                viewQuizAnswer();
+//                break;
 
             case android.R.id.home:
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);

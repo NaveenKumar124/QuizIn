@@ -20,7 +20,7 @@ public class Common {
     public static final String KEY_SAVE_ONLINE_MODE = "ONLINE_MODE";
     public static int timer = 0;
 
-    public static final int TOTAL_TIME = 20 * 60 * 1000 ; //20 Minutes
+    public static final int TOTAL_TIME = 10 * 60 * 1000 ; //10 Minutes
     public static List<Question> questionList = new ArrayList<>();
     public static List<CurrentQuestion> answerSheetList = new ArrayList<>();
     public static List<CurrentQuestion> answerSheetListFiltered = new ArrayList<>();
