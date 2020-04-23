@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar1);
         toolbar.setTitle("QuizIn");
-              setSupportActionBar(toolbar);
+//              setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("QuizIn");
 
         recycler_category = (RecyclerView) findViewById(R.id.recycler_category);
